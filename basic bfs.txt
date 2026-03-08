@@ -1,0 +1,38 @@
+from collections import deque
+
+# Input vertices
+v = input("Enter vertices: ").split()
+
+# Create empty adjacency list
+g = {x: [] for x in v}
+
+# Input number of edges
+n = int(input("Enter number of edges: "))
+
+# Input edges
+for _ in range(n):
+    a, b = input("Enter edge (u v): ").split()
+    g[a].append(b)
+    g[b].append(a)
+
+# Start node
+start = input("Enter start vertex: ")
+
+# BFS
+q = deque([start])
+visited = {start}
+
+print("BFS Traversal:")
+while q:
+    x = q.popleft()
+    print(x, end=" ")
+
+    for y in g[x]:
+        if y not in visited:
+            visited.add(y)
+            q.append(y)
+            tree[x].append(y)
+print("\n\n BFS tree structure:")
+for parent in tree:
+   if tree[parent]:
+      print(parent,"->",tree[parent])
